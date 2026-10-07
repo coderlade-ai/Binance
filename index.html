@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binance | Buy & Sell Cryptocurrency | Bitcoin, Ethereum & Altcoins</title>
+
+  <!-- Google Fonts: Inter (editorial/BinanceNova fallback) & IBM Plex Sans (tabular/BinancePlex fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM TOKENS & VARIABLES
+       ========================================================================== */
+    :root {
+      /* Brand & Accent */
+      --colors-primary: #FCD535;
+      --colors-primary-active: #f0b90b;
+      --colors-primary-disabled: #3a3a1f;
+      --colors-accent-turquoise: #2dbdb6;
+
+      /* Dark Surface (Marketing Default) */
+      --colors-canvas-dark: #0b0e11;
+      --colors-surface-card-dark: #1e2329;
+      --colors-surface-elevated-dark: #2b3139;
+
+      /* Light Surface (Transactional) */
+      --colors-canvas-light: #ffffff;
+      --colors-surface-soft-light: #fafafa;
+      --colors-surface-strong-light: #f5f5f5;
+
+      /* Hairlines & Borders */
+      --colors-hairline-on-light: #eaecef;
+      --colors-hairline-on-dark: #2b3139;
+      --colors-border-strong: #cdd1d6;
+
+      /* Text Tokens */
+      --colors-ink: #181a20;
+      --colors-body: #eaecef;
+      --colors-body-on-light: #181a20;
+      --colors-muted: #707a8a;
+      --colors-muted-strong: #929aa5;
+      --colors-on-primary: #181a20;
+      --colors-on-dark: #ffffff;
+
+      /* Trading Semantics */
+      --colors-trading-up: #0ecb81;
+      --colors-trading-down: #f6465d;
+
+      /* Info & Focus */
+      --colors-info: #3b82f6;
+      --focus-ring: 0 0 0 2px rgba(59, 130, 246, 0.5);
+
+      /* Typography Stacks */
+      --font-display-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-numbers: 'IBM Plex Sans', -apple-system, monospace, sans-serif;
+
+      /* Spacing Scale (Base: 4px) */
+      --spacing-xxs: 4px;
+      --spacing-xs: 8px;
+      --spacing-sm: 12px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+      --spacing-xxl: 48px;
+      --spacing-section: 80px;
+
+      /* Border Radii */
+      --rounded-xs: 2px;
+      --rounded-sm: 4px;
+      --rounded-md: 6px;
+      --rounded-lg: 8px;
+      --rounded-xl: 12px;
+      --rounded-pill: 9999px;
+      --rounded-full: 50%;
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--colors-canvas-dark);
+      color: var(--colors-body);
+      font-family: var(--font-display-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--colors-canvas-dark);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select {
+      font-family: inherit;
+      border: none;
+      outline: none;
+    }
+
+    button:focus-visible, input:focus-visible {
+      box-shadow: var(--focus-ring);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+
+    .container-wide {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+
+    /* Number Display Class for BinancePlex tabular numbers */
+    .num {
+      font-family: var(--font-numbers);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================================================
+       BUTTON COMPONENTS
+       ========================================================================== */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--colors-primary);
+      color: var(--colors-on-primary);
+      font-size: 14px;
+      font-weight: 600;
+      height: 40px;
+      padding: 0 24px;
+      border-radius: var(--rounded-md);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary:active {
+      background-color: var(--colors-primary-active);
+    }
+
+    .btn-primary-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--colors-primary);
+      color: var(--colors-on-primary);
+      font-size: 14px;
+      font-weight: 600;
+      height: 42px;
+      padding: 0 32px;
+      border-radius: var(--rounded-pill);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary-pill:active {
+      background-color: var(--colors-primary-active);
+    }
+
+    .btn-secondary-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--colors-surface-card-dark);
+      color: var(--colors-on-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      font-size: 14px;
+      font-weight: 600;
+      height: 40px;
+      padding: 0 20px;
+      border-radius: var(--rounded-md);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-secondary-dark:hover {
+      background-color: var(--colors-surface-elevated-dark);
+    }
+
+    .btn-trading-up {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--colors-trading-up);
+      color: var(--colors-on-dark);
+      font-size: 13px;
+      font-weight: 600;
+      height: 32px;
+      padding: 0 16px;
+      border-radius: var(--rounded-sm);
+      cursor: pointer;
+    }
+
+    .btn-trading-down {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--colors-trading-down);
+      color: var(--colors-on-dark);
+      font-size: 13px;
+      font-weight: 600;
+      height: 32px;
+      padding: 0 16px;
+      border-radius: var(--rounded-sm);
+      cursor: pointer;
+    }
+
+    .btn-subscribe {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--colors-primary);
+      color: var(--colors-on-primary);
+      font-size: 12px;
+      font-weight: 600;
+      height: 28px;
+      padding: 0 12px;
+      border-radius: var(--rounded-sm);
+      cursor: pointer;
+    }
+
+    .text-link {
+      color: var(--colors-primary);
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       TOP NAVIGATION
+       ========================================================================== */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 64px;
+      background-color: var(--colors-canvas-dark);
+      border-bottom: 1px solid var(--colors-hairline-on-dark);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      color: var(--colors-primary);
+    }
+
+    .brand-logo svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--colors-primary);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 22px;
+    }
+
+    .nav-item a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--colors-body);
+      transition: color 0.15s;
+    }
+
+    .nav-item a:hover {
+      color: var(--colors-primary);
+    }
+
+    .nav-badge-new {
+      background: rgba(252, 213, 53, 0.15);
+      color: var(--colors-primary);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: var(--rounded-xs);
+      margin-left: 4px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-login {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--colors-on-dark);
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .nav-login:hover {
+      color: var(--colors-primary);
+    }
+
+    .nav-icon-btn {
+      background: transparent;
+      color: var(--colors-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 6px;
+      border-radius: var(--rounded-md);
+    }
+
+    .nav-icon-btn:hover {
+      color: var(--colors-body);
+      background-color: var(--colors-surface-card-dark);
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: none;
+      color: var(--colors-on-dark);
+      cursor: pointer;
+    }
+
+    /* Mobile Sheet Navigation */
+    .mobile-menu {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 64px);
+      background-color: var(--colors-canvas-dark);
+      border-top: 1px solid var(--colors-hairline-on-dark);
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--spacing-xl) var(--spacing-lg);
+      z-index: 99;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-links {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-links a {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--colors-on-dark);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-band {
+      padding: var(--spacing-section) 0 40px;
+      background-color: var(--colors-canvas-dark);
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+
+    .hero-h1 {
+      font-size: 58px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--colors-on-dark);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .hero-h1 span.num {
+      color: var(--colors-primary);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--colors-muted-strong);
+      margin-bottom: var(--spacing-xl);
+      max-width: 540px;
+    }
+
+    .hero-signup-box {
+      display: flex;
+      align-items: center;
+      background-color: var(--colors-surface-card-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-lg);
+      padding: 6px 8px 6px 16px;
+      max-width: 480px;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .hero-signup-input {
+      flex: 1;
+      background: transparent;
+      color: var(--colors-on-dark);
+      font-size: 14px;
+      border: none;
+    }
+
+    .hero-signup-input::placeholder {
+      color: var(--colors-muted);
+    }
+
+    .trust-badges-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+
+    .trust-badge {
+      background-color: var(--colors-surface-card-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-lg);
+      padding: 16px 18px;
+    }
+
+    .trust-badge-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--colors-muted);
+      margin-bottom: 4px;
+    }
+
+    .trust-badge-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--colors-primary);
+    }
+
+    /* Live Mini Ticker Bar */
+    .mini-ticker-bar {
+      margin-top: 48px;
+      padding: 16px var(--spacing-lg);
+      background-color: var(--colors-surface-card-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-xl);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-md);
+    }
+
+    .ticker-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border-right: 1px solid var(--colors-hairline-on-dark);
+      padding-right: 16px;
+    }
+
+    .ticker-item:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .ticker-pair {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--colors-muted-strong);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ticker-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .ticker-price {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--colors-on-dark);
+    }
+
+    .price-up {
+      color: var(--colors-trading-up);
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .price-down {
+      color: var(--colors-trading-down);
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* ==========================================================================
+       MARKETS TABLE COMPONENT
+       ========================================================================== */
+    .markets-section {
+      padding: var(--spacing-section) 0;
+    }
+
+    .section-head-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--colors-on-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .markets-table-card {
+      background-color: var(--colors-surface-card-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-xl);
+      padding: var(--spacing-lg);
+    }
+
+    .markets-tabs {
+      display: flex;
+      gap: 24px;
+      border-bottom: 1px solid var(--colors-hairline-on-dark);
+      padding-bottom: 14px;
+      margin-bottom: 12px;
+    }
+
+    .tab-btn {
+      background: none;
+      color: var(--colors-muted);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 8px;
+      transition: color 0.15s;
+    }
+
+    .tab-btn.active {
+      color: var(--colors-on-dark);
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--colors-primary);
+      border-radius: var(--rounded-pill);
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .markets-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .markets-table th {
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--colors-muted);
+      border-bottom: 1px solid var(--colors-hairline-on-dark);
+    }
+
+    .markets-table td {
+      padding: 18px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--colors-hairline-on-dark);
+      vertical-align: middle;
+    }
+
+    .markets-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .coin-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .coin-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--rounded-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 11px;
+      color: #fff;
+    }
+
+    .coin-symbol {
+      font-weight: 600;
+      color: var(--colors-on-dark);
+      font-size: 15px;
+    }
+
+    .coin-fullname {
+      font-size: 12px;
+      color: var(--colors-muted);
+    }
+
+    .table-price {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--colors-on-dark);
+    }
+
+    /* Flash animations for price update */
+    .flash-up {
+      animation: flashGreen 0.7s ease;
+    }
+
+    .flash-down {
+      animation: flashRed 0.7s ease;
+    }
+
+    @keyframes flashGreen {
+      0% { color: var(--colors-trading-up); transform: scale(1.03); }
+      100% { color: var(--colors-on-dark); transform: scale(1); }
+    }
+
+    @keyframes flashRed {
+      0% { color: var(--colors-trading-down); transform: scale(1.03); }
+      100% { color: var(--colors-on-dark); transform: scale(1); }
+    }
+
+    /* ==========================================================================
+       ARENA HERO GRADIENT & SMART MONEY SECTION
+       ========================================================================== */
+    .arena-banner {
+      margin: 40px 0 var(--spacing-section);
+      background: linear-gradient(180deg, rgba(252, 213, 53, 0.22) 0%, var(--colors-canvas-dark) 100%);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-xl);
+      padding: var(--spacing-xxl) var(--spacing-xl);
+      text-align: center;
+    }
+
+    .arena-tag {
+      display: inline-block;
+      background: var(--colors-primary);
+      color: var(--colors-on-primary);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: var(--rounded-pill);
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .arena-title {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--colors-on-dark);
+      margin-bottom: 8px;
+    }
+
+    .arena-pool {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--colors-primary);
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .smart-money-card {
+      background: var(--colors-surface-card-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-xl);
+      padding: var(--spacing-lg);
+      margin-top: 32px;
+      text-align: left;
+    }
+
+    .smart-money-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .trader-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .trader-item {
+      background: var(--colors-surface-elevated-dark);
+      border-radius: var(--rounded-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .trader-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .trader-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .trader-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rounded-full);
+      background: #374151;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--colors-primary);
+    }
+
+    .trader-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--colors-on-dark);
+    }
+
+    .roi-badge {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--colors-trading-up);
+    }
+
+    /* ==========================================================================
+       "FUNDS ARE SAFU" BAND
+       ========================================================================== */
+    .safu-band {
+      padding: var(--spacing-section) 0;
+      background-color: var(--colors-canvas-dark);
+      border-top: 1px solid var(--colors-hairline-on-dark);
+      border-bottom: 1px solid var(--colors-hairline-on-dark);
+    }
+
+    .safu-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+
+    .safu-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--colors-primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .safu-desc {
+      font-size: 16px;
+      color: var(--colors-muted-strong);
+      line-height: 1.6;
+    }
+
+    .stat-callouts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-xl);
+      text-align: center;
+    }
+
+    .stat-callout-card {
+      padding: var(--spacing-lg);
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--colors-primary);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .stat-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--colors-body);
+      margin-bottom: 4px;
+    }
+
+    .stat-subtext {
+      font-size: 13px;
+      color: var(--colors-muted);
+    }
+
+    /* ==========================================================================
+       LIGHT-MODE TRANSACTIONAL SURFACE: "BUY CRYPTO" EXPERIENCE
+       ========================================================================== */
+    .transactional-surface {
+      background-color: var(--colors-canvas-light);
+      color: var(--colors-body-on-light);
+      padding: var(--spacing-section) 0;
+      border-top: 1px solid var(--colors-hairline-on-dark);
+    }
+
+    .trans-head-badge {
+      display: inline-block;
+      background: #fff8d6;
+      color: #946c00;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--rounded-pill);
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .trans-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--colors-ink);
+      margin-bottom: 8px;
+    }
+
+    .trans-subtitle {
+      font-size: 15px;
+      color: var(--colors-muted);
+      margin-bottom: 40px;
+    }
+
+    .trans-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--spacing-xl);
+      align-items: start;
+    }
+
+    /* Price Chart & Conversion Card (Light Mode) */
+    .chart-card-light {
+      background: var(--colors-canvas-light);
+      border: 1px solid var(--colors-hairline-on-light);
+      border-radius: var(--rounded-xl);
+      padding: var(--spacing-lg);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .chart-pair-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chart-curr-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--colors-ink);
+    }
+
+    .chart-canvas-wrapper {
+      position: relative;
+      height: 220px;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .timeframe-selector {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tf-btn {
+      background: var(--colors-surface-strong-light);
+      border: 1px solid var(--colors-hairline-on-light);
+      border-radius: var(--rounded-sm);
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--colors-muted);
+      cursor: pointer;
+    }
+
+    .tf-btn.active {
+      background: var(--colors-ink);
+      color: var(--colors-canvas-light);
+    }
+
+    /* Buy Crypto Amount Card (Right Rail) */
+    .buy-crypto-amount-card {
+      background: var(--colors-canvas-light);
+      border: 1px solid var(--colors-hairline-on-light);
+      border-radius: var(--rounded-xl);
+      padding: var(--spacing-xl);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .card-switch-tabs {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--colors-hairline-on-light);
+      padding-bottom: 12px;
+    }
+
+    .c-tab {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--colors-muted);
+      cursor: pointer;
+      padding-bottom: 4px;
+      position: relative;
+    }
+
+    .c-tab.active {
+      color: var(--colors-ink);
+    }
+
+    .c-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -13px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--colors-primary);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--colors-muted);
+      margin-bottom: 8px;
+    }
+
+    .input-box-light {
+      display: flex;
+      align-items: center;
+      background: var(--colors-surface-strong-light);
+      border: 1px solid var(--colors-hairline-on-light);
+      border-radius: var(--rounded-md);
+      padding: 8px 14px;
+      transition: border 0.15s;
+    }
+
+    .input-box-light:focus-within {
+      border-color: var(--colors-info);
+      background: var(--colors-canvas-light);
+      box-shadow: var(--focus-ring);
+    }
+
+    .input-box-light input {
+      flex: 1;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--colors-ink);
+      background: transparent;
+    }
+
+    .currency-tag {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--colors-ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-left: 10px;
+      border-left: 1px solid var(--colors-hairline-on-light);
+    }
+
+    .order-summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--colors-muted);
+      margin-bottom: 8px;
+    }
+
+    .order-summary-row strong {
+      color: var(--colors-ink);
+    }
+
+    /* 3-Steps Card */
+    .steps-container {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+    }
+
+    .step-card {
+      background: var(--colors-surface-soft-light);
+      border: 1px solid var(--colors-hairline-on-light);
+      border-radius: var(--rounded-lg);
+      padding: var(--spacing-lg);
+    }
+
+    .step-num-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--rounded-full);
+      background: var(--colors-primary);
+      color: var(--colors-ink);
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .step-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--colors-ink);
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      font-size: 13px;
+      color: var(--colors-muted);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       TRADE ON THE GO & QR PROMO SECTION
+       ========================================================================== */
+    .trade-go-section {
+      padding: var(--spacing-section) 0;
+      background: var(--colors-canvas-dark);
+    }
+
+    .qr-promo-card {
+      background-color: var(--colors-surface-card-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-xl);
+      padding: var(--spacing-xl);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .qr-info h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--colors-on-dark);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .qr-info p {
+      font-size: 15px;
+      color: var(--colors-muted-strong);
+      margin-bottom: 24px;
+    }
+
+    .download-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .store-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--colors-surface-elevated-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-lg);
+      padding: 10px 16px;
+      color: var(--colors-on-dark);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .store-badge:hover {
+      background: #374151;
+    }
+
+    .qr-code-box {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: var(--rounded-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .qr-code-box span {
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--colors-ink);
+    }
+
+    /* ==========================================================================
+       FAQ ACCORDION SECTION
+       ========================================================================== */
+    .faq-section {
+      padding: var(--spacing-section) 0;
+      background: var(--colors-canvas-dark);
+    }
+
+    .faq-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--colors-hairline-on-dark);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: none;
+      padding: 22px 0;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--colors-on-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .faq-question:hover {
+      color: var(--colors-primary);
+    }
+
+    .faq-icon {
+      transition: transform 0.25s ease;
+      color: var(--colors-muted);
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+      color: var(--colors-primary);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--colors-muted-strong);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-bottom: 20px;
+    }
+
+    /* ==========================================================================
+       CTA BAND (PRE-FOOTER)
+       ========================================================================== */
+    .cta-band {
+      margin: 0 0 var(--spacing-section);
+      background-color: var(--colors-surface-card-dark);
+      border: 1px solid var(--colors-hairline-on-dark);
+      border-radius: var(--rounded-xl);
+      padding: var(--spacing-xxl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cta-band-text h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--colors-on-dark);
+      margin-bottom: 8px;
+    }
+
+    .cta-band-text p {
+      color: var(--colors-muted-strong);
+      font-size: 15px;
+    }
+
+    /* ==========================================================================
+       LIGHT FOOTER (DISTINCTIVE CLOSURE ON DARK BODY)
+       ========================================================================== */
+    .footer-light {
+      background-color: var(--colors-surface-soft-light);
+      color: var(--colors-body-on-light);
+      padding: 64px 0 32px;
+      border-top: 1px solid var(--colors-hairline-on-light);
+    }
+
+    .footer-columns-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--spacing-lg);
+      margin-bottom: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--colors-ink);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--colors-muted);
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--colors-ink);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--colors-hairline-on-light);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--colors-muted);
+    }
+
+    .social-icons-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-icon-link {
+      color: var(--colors-muted);
+      cursor: pointer;
+    }
+
+    .social-icon-link:hover {
+      color: var(--colors-ink);
+    }
+
+    /* ==========================================================================
+       COOKIE CONSENT POPUP CARD
+       ========================================================================== */
+    .cookie-consent-card {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      max-width: 420px;
+      background-color: var(--colors-canvas-light);
+      color: var(--colors-ink);
+      border-radius: var(--rounded-lg);
+      padding: var(--spacing-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid var(--colors-hairline-on-light);
+    }
+
+    .cookie-consent-card.hidden {
+      display: none;
+    }
+
+    .cookie-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--colors-muted-strong);
+    }
+
+    .cookie-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .cookie-btn-primary {
+      flex: 1;
+      background-color: var(--colors-primary);
+      color: var(--colors-on-primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px;
+      border-radius: var(--rounded-sm);
+      cursor: pointer;
+    }
+
+    .cookie-btn-secondary {
+      background: var(--colors-surface-strong-light);
+      color: var(--colors-ink);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: var(--rounded-sm);
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .footer-columns-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .hero-h1 {
+        font-size: 44px;
+      }
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .trans-grid {
+        grid-template-columns: 1fr;
+      }
+      .qr-promo-card {
+        grid-template-columns: 1fr;
+      }
+      .trader-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu, .nav-login {
+        display: none;
+      }
+      .hamburger-btn {
+        display: block;
+      }
+      .hero-h1 {
+        font-size: 36px;
+      }
+      .mini-ticker-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .trust-badges-row {
+        grid-template-columns: 1fr;
+      }
+      .stat-callouts-grid {
+        grid-template-columns: 1fr;
+      }
+      .steps-container {
+        grid-template-columns: 1fr;
+      }
+      .footer-columns-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cta-band {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .cookie-consent-card {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. TOP NAVIGATION (DARK MODE)
+       ========================================================================== -->
+  <header class="top-nav">
+    <div class="container-wide nav-inner">
+      <div class="nav-left">
+        <a href="#" class="brand-logo" aria-label="Binance Home">
+          <!-- Official Binance Logo Geometry -->
+          <svg viewBox="0 0 120 120" fill="currentColor">
+            <path d="M60 15L74.8 29.8L50.4 54.2L35.6 39.4L60 15Z"/>
+            <path d="M78.6 33.6L93.4 48.4L80.2 61.6L65.4 46.8L78.6 33.6Z"/>
+            <path d="M21.4 48.4L36.2 33.6L49.4 46.8L34.6 61.6L21.4 48.4Z"/>
+            <path d="M74.8 90.2L60 105L35.6 80.6L50.4 65.8L74.8 90.2Z"/>
+            <path d="M97.2 52.2L112 67L97.2 81.8L82.4 67L97.2 52.2Z"/>
+            <path d="M7.8 67L22.6 52.2L37.4 67L22.6 81.8L7.8 67Z"/>
+            <path d="M60 42.6L77.4 60L60 77.4L42.6 60L60 42.6Z"/>
+          </svg>
+          <span>BINANCE</span>
+        </a>
+
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="#buy-crypto-section">Buy Crypto</a></li>
+          <li class="nav-item"><a href="#markets-section">Markets</a></li>
+          <li class="nav-item"><a href="#markets-section">Trade</a></li>
+          <li class="nav-item"><a href="#arena-section">Futures <span class="nav-badge-new">HOT</span></a></li>
+          <li class="nav-item"><a href="#safu-section">Earn</a></li>
+          <li class="nav-item"><a href="#smart-money-box">Smart Money</a></li>
+          <li class="nav-item"><a href="#trade-go">Campaigns</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        <a href="#buy-crypto-section" class="nav-login">Log In</a>
+        <a href="#hero-signup" class="btn-primary-pill">Sign Up</a>
+        <button class="nav-icon-btn" aria-label="Toggle language">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+        </button>
+        <button class="hamburger-btn" id="mobile-toggle" aria-label="Open navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-links">
+      <a href="#buy-crypto-section" onclick="toggleMenu()">Buy Crypto</a>
+      <a href="#markets-section" onclick="toggleMenu()">Markets</a>
+      <a href="#arena-section" onclick="toggleMenu()">Futures Arena</a>
+      <a href="#smart-money-box" onclick="toggleMenu()">Smart Money</a>
+      <a href="#safu-section" onclick="toggleMenu()">Funds Are SAFU</a>
+      <a href="#trade-go" onclick="toggleMenu()">App Download</a>
+      <a href="#faq-section" onclick="toggleMenu()">FAQ</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <a href="#hero-signup" class="btn-primary-pill" onclick="toggleMenu()">Sign Up with Email / Phone</a>
+      <a href="#buy-crypto-section" class="btn-secondary-dark" style="text-align: center;" onclick="toggleMenu()">Log In</a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. HERO SECTION
+       ========================================================================== -->
+  <section class="hero-band">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <h1 class="hero-h1">
+            <span class="num">316,258,026</span><br>USERS TRUST US
+          </h1>
+          <p class="hero-sub">
+            The world's largest cryptocurrency exchange by trade volume. Join over 316M traders with industry-leading fees and institutional security.
+          </p>
+
+          <form class="hero-signup-box" id="hero-signup" onsubmit="event.preventDefault(); alert('Redirecting to secure verification...');">
+            <input type="text" class="hero-signup-input" placeholder="Email or Phone Number" required>
+            <button type="submit" class="btn-primary-pill">Sign Up</button>
+          </form>
+
+          <div class="trust-badges-row">
+            <div class="trust-badge">
+              <div class="trust-badge-label">24H Trading Volume</div>
+              <div class="trust-badge-val num">$76.4B+</div>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge-label">Listed Cryptocurrencies</div>
+              <div class="trust-badge-val num">350+</div>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge-label">Trading Fee As Low As</div>
+              <div class="trust-badge-val num">&lt;0.10%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right-Hand Quick Live Market Widget -->
+        <div style="background: var(--colors-surface-card-dark); border: 1px solid var(--colors-hairline-on-dark); border-radius: var(--rounded-xl); padding: var(--spacing-xl);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <span style="font-size: 16px; font-weight: 700; color: var(--colors-on-dark);">Quick Spot Market</span>
+            <span style="font-size: 12px; color: var(--colors-trading-up); font-weight: 600;">● Live Stream</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 28px; height: 28px; border-radius: 50%; background: #F7931A; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px;">₿</div>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px;">BTC / USDT</div>
+                  <div style="font-size: 11px; color: var(--colors-muted);">Bitcoin</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div class="num" style="font-weight: 700; font-size: 15px;" id="hero-btc-price">$88,432.10</div>
+                <div class="price-up num">+2.34%</div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 28px; height: 28px; border-radius: 50%; background: #627EEA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px;">Ξ</div>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px;">ETH / USDT</div>
+                  <div style="font-size: 11px; color: var(--colors-muted);">Ethereum</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div class="num" style="font-weight: 700; font-size: 15px;" id="hero-eth-price">$3,428.80</div>
+                <div class="price-up num">+1.85%</div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 28px; height: 28px; border-radius: 50%; background: #F3BA2F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; color: #000;">BNB</div>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px;">BNB / USDT</div>
+                  <div style="font-size: 11px; color: var(--colors-muted);">BNB Chain</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div class="num" style="font-weight: 700; font-size: 15px;" id="hero-bnb-price">$624.50</div>
+                <div class="price-up num">+3.12%</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#markets-section" class="btn-primary" style="width: 100%; margin-top: 24px; text-align: center;">View All 350+ Markets</a>
+        </div>
+      </div>
+
+      <!-- Live Mini Ticker Bar -->
+      <div class="mini-ticker-bar">
+        <div class="ticker-item">
+          <div class="ticker-pair">BTC/USDT <span class="price-up num">▲ +2.34%</span></div>
+          <div class="ticker-price-row">
+            <span class="ticker-price num" id="bar-btc">$88,432.10</span>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-pair">ETH/USDT <span class="price-up num">▲ +1.85%</span></div>
+          <div class="ticker-price-row">
+            <span class="ticker-price num" id="bar-eth">$3,428.80</span>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-pair">SOL/USDT <span class="price-down num">▼ -0.74%</span></div>
+          <div class="ticker-price-row">
+            <span class="ticker-price num" id="bar-sol">$182.25</span>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-pair">BNB/USDT <span class="price-up num">▲ +3.12%</span></div>
+          <div class="ticker-price-row">
+            <span class="ticker-price num" id="bar-bnb">$624.50</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. MARKETS TABLE SECTION
+       ========================================================================== -->
+  <section class="markets-section" id="markets-section">
+    <div class="container">
+      <div class="section-head-row">
+        <div>
+          <h2 class="section-title">Popular Cryptocurrencies</h2>
+          <p style="color: var(--colors-muted); font-size: 14px; margin-top: 4px;">Real-time trading quotes across global spot pairs</p>
+        </div>
+        <a href="#buy-crypto-section" class="text-link" style="font-size: 14px;">Instant Buy &amp; Sell &rarr;</a>
+      </div>
+
+      <div class="markets-table-card">
+        <div class="markets-tabs">
+          <button class="tab-btn active" onclick="switchMarketTab(this, 'popular')">Popular</button>
+          <button class="tab-btn" onclick="switchMarketTab(this, 'gainers')">Top Gainers</button>
+          <button class="tab-btn" onclick="switchMarketTab(this, 'volume')">24h Volume</button>
+          <button class="tab-btn" onclick="switchMarketTab(this, 'new')">New Listings</button>
+        </div>
+
+        <div class="table-container">
+          <table class="markets-table" id="markets-table-body">
+            <thead>
+              <tr>
+                <th>Pair</th>
+                <th>Last Price</th>
+                <th>24h Change</th>
+                <th>24h Volume</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="table-rows">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. ARENA HERO GRADIENT & SMART MONEY
+       ========================================================================== -->
+  <section class="container" id="arena-section">
+    <div class="arena-banner">
+      <div class="arena-tag">Product Launch &bull; Futures Masters</div>
+      <h2 class="arena-title">Futures Masters Championship</h2>
+      <div class="arena-pool num">4,000,000 USDT</div>
+      <p style="color: var(--colors-muted-strong); max-width: 620px; margin: 0 auto 28px; font-size: 15px;">
+        Compete with the world's most profitable algorithmic and manual traders. Dynamic prize pools, real-time leaderboard rankings, and 0% maker fees on selected pairs.
+      </p>
+      <a href="#hero-signup" class="btn-primary-pill" style="height: 48px; font-size: 16px;">Join Now</a>
+    </div>
+
+    <!-- Smart Money Section -->
+    <div class="smart-money-card" id="smart-money-box">
+      <div class="smart-money-header">
+        <div>
+          <h3 style="font-size: 20px; font-weight: 700; color: var(--colors-on-dark);">Smart Money Top Traders</h3>
+          <p style="font-size: 13px; color: var(--colors-muted);">Automatically mirror verified top-tier portfolio managers.</p>
+        </div>
+        <button class="btn-secondary-dark" style="color: var(--colors-accent-turquoise); border-color: var(--colors-hairline-on-dark);">Check Now</button>
+      </div>
+
+      <div class="trader-grid">
+        <div class="trader-item">
+          <div class="trader-top">
+            <div class="trader-profile">
+              <div class="trader-avatar">SM</div>
+              <div>
+                <div class="trader-name">AlphaWave_Fund</div>
+                <div style="font-size: 11px; color: var(--colors-muted);">342 Followers</div>
+              </div>
+            </div>
+            <div class="roi-badge num">+148.2%</div>
+          </div>
+          <div style="font-size: 12px; color: var(--colors-muted);">90D Win Rate: <strong style="color: var(--colors-body);">88.4%</strong> &bull; AUM: <strong class="num" style="color: var(--colors-body);">$2,410,000</strong></div>
+          <button class="btn-subscribe" onclick="alert('Subscribed to AlphaWave_Fund signals!')">Subscribe</button>
+        </div>
+
+        <div class="trader-item">
+          <div class="trader-top">
+            <div class="trader-profile">
+              <div class="trader-avatar">QK</div>
+              <div>
+                <div class="trader-name">QuantKing_BTC</div>
+                <div style="font-size: 11px; color: var(--colors-muted);">819 Followers</div>
+              </div>
+            </div>
+            <div class="roi-badge num">+204.9%</div>
+          </div>
+          <div style="font-size: 12px; color: var(--colors-muted);">90D Win Rate: <strong style="color: var(--colors-body);">92.1%</strong> &bull; AUM: <strong class="num" style="color: var(--colors-body);">$4,890,000</strong></div>
+          <button class="btn-subscribe" onclick="alert('Subscribed to QuantKing_BTC signals!')">Subscribe</button>
+        </div>
+
+        <div class="trader-item">
+          <div class="trader-top">
+            <div class="trader-profile">
+              <div class="trader-avatar">DL</div>
+              <div>
+                <div class="trader-name">DeltaLong_Hedger</div>
+                <div style="font-size: 11px; color: var(--colors-muted);">510 Followers</div>
+              </div>
+            </div>
+            <div class="roi-badge num">+96.4%</div>
+          </div>
+          <div style="font-size: 12px; color: var(--colors-muted);">90D Win Rate: <strong style="color: var(--colors-body);">84.6%</strong> &bull; AUM: <strong class="num" style="color: var(--colors-body);">$1,230,000</strong></div>
+          <button class="btn-subscribe" onclick="alert('Subscribed to DeltaLong_Hedger signals!')">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. "FUNDS ARE SAFU" BAND
+       ========================================================================== -->
+  <section class="safu-band" id="safu-section">
+    <div class="container">
+      <div class="safu-header">
+        <h2 class="safu-title">FUNDS ARE SAFU</h2>
+        <p class="safu-desc">
+          Binance established the Secure Asset Fund for Users (SAFU) in 2018 as an emergency insurance fund. We maintain strict 1:1 reserve backing for all user deposits.
+        </p>
+      </div>
+
+      <div class="stat-callouts-grid">
+        <div class="stat-callout-card">
+          <div class="stat-number num">15,000 BTC</div>
+          <div class="stat-label">Transparent SAFU Reserve</div>
+          <div class="stat-subtext">Held in publicly auditable on-chain cold wallets</div>
+        </div>
+
+        <div class="stat-callout-card">
+          <div class="stat-number num">$1,000,000,000+</div>
+          <div class="stat-label">Emergency Fund Valuation</div>
+          <div class="stat-subtext">Dynamic liquidation protection buffer</div>
+        </div>
+
+        <div class="stat-callout-card">
+          <div class="stat-number num">316,258,026</div>
+          <div class="stat-label">Protected Global Accounts</div>
+          <div class="stat-subtext">Zero security incident fund loss since inception</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. LIGHT-MODE TRANSACTIONAL SURFACE: "BUY CRYPTO" EXPERIENCE
+       ========================================================================== -->
+  <section class="transactional-surface" id="buy-crypto-section">
+    <div class="container">
+      <div class="trans-head-badge">TRANSACTIONAL DESK &bull; LIGHT MODE</div>
+      <h2 class="trans-title">Buy Crypto with Card or Bank Transfer</h2>
+      <p class="trans-subtitle">Execute instant purchases with zero hidden fees and competitive live spreads.</p>
+
+      <div class="trans-grid">
+        <!-- Live Candlestick & Price Chart Card -->
+        <div class="chart-card-light">
+          <div class="chart-header">
+            <div class="chart-pair-info">
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: #F7931A; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff;">₿</div>
+              <div>
+                <div style="font-weight: 700; font-size: 18px; color: var(--colors-ink);">Bitcoin Markets (BTC/USD)</div>
+                <div style="font-size: 12px; color: var(--colors-muted);">Real-time Index Price</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div class="chart-curr-price num" id="chart-live-price">$88,432.10</div>
+              <div class="price-up num">+2.34% Today</div>
+            </div>
+          </div>
+
+          <!-- HTML5 Canvas Interactive Chart -->
+          <div class="chart-canvas-wrapper">
+            <canvas id="marketCanvas" width="600" height="220" style="width: 100%; height: 100%; display: block;"></canvas>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="timeframe-selector">
+              <button class="tf-btn active" onclick="setTimeframe(this, '24H')">24H</button>
+              <button class="tf-btn" onclick="setTimeframe(this, '1W')">1W</button>
+              <button class="tf-btn" onclick="setTimeframe(this, '1M')">1M</button>
+              <button class="tf-btn" onclick="setTimeframe(this, '1Y')">1Y</button>
+              <button class="tf-btn" onclick="setTimeframe(this, 'ALL')">ALL</button>
+            </div>
+            <span style="font-size: 12px; color: var(--colors-muted);">Volume: $24.8 Billion</span>
+          </div>
+        </div>
+
+        <!-- Right Rail: Buy Crypto Amount Card -->
+        <div class="buy-crypto-amount-card">
+          <div class="card-switch-tabs">
+            <div class="c-tab active" id="tab-buy" onclick="toggleOrderTab('buy')">Buy</div>
+            <div class="c-tab" id="tab-sell" onclick="toggleOrderTab('sell')">Sell</div>
+            <div class="c-tab" id="tab-convert" onclick="toggleOrderTab('convert')">Convert</div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>Spend</span>
+              <span>Min: $15 &bull; Max: $20,000</span>
+            </div>
+            <div class="input-box-light">
+              <input type="number" id="spend-amount" value="500" min="15" oninput="calculateCryptoReturn()">
+              <div class="currency-tag">
+                <span>USD</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>Receive</span>
+              <span>Estimated Rate</span>
+            </div>
+            <div class="input-box-light">
+              <input type="text" id="receive-amount" value="0.00565" readonly style="color: var(--colors-ink);">
+              <div class="currency-tag">
+                <span id="selected-coin-symbol">BTC</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: var(--colors-surface-soft-light); border-radius: var(--rounded-md); padding: 12px; margin-bottom: 20px;">
+            <div class="order-summary-row">
+              <span>Exchange Rate</span>
+              <span class="num">1 BTC ≈ $88,432.10</span>
+            </div>
+            <div class="order-summary-row">
+              <span>Payment Method</span>
+              <strong>Visa / Mastercard (**4219)</strong>
+            </div>
+            <div class="order-summary-row" style="margin-bottom: 0;">
+              <span>Transaction Fee</span>
+              <strong style="color: var(--colors-trading-up);">0.00 USD (Promo)</strong>
+            </div>
+          </div>
+
+          <button class="btn-primary" style="width: 100%; height: 44px; font-size: 15px;" onclick="executeOrder()">
+            Continue to Order Confirmation
+          </button>
+        </div>
+      </div>
+
+      <!-- 3-Step Guides -->
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-num-badge">1</div>
+          <h3>Enter Amount &amp; Currency</h3>
+          <p>Choose fiat currency (USD, EUR, GBP, INR) and select from over 350 available cryptocurrencies.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num-badge">2</div>
+          <h3>Confirm Payment Method</h3>
+          <p>Pay smoothly with debit card, Apple Pay, Google Pay, or direct SEPA / Wire transfer.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num-badge">3</div>
+          <h3>Instant SAFU Custody</h3>
+          <p>Your purchased crypto arrives in your spot wallet immediately with 100% verified reserve backing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. TRADE ON THE GO & QR PROMO SECTION
+       ========================================================================== -->
+  <section class="trade-go-section" id="trade-go">
+    <div class="container">
+      <div class="qr-promo-card">
+        <div class="qr-info">
+          <h2>Trade on the go.<br>Anywhere, anytime.</h2>
+          <p>
+            Stay on top of market movements with 24/7 low-latency order execution, custom alert triggers, and cross-device portfolio sync.
+          </p>
+          <div class="download-badges">
+            <div class="store-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.59-.73 1-1.73.89-2.74-.88.04-1.92.59-2.54 1.32-.54.63-.99 1.64-.86 2.62.97.08 1.93-.49 2.51-1.2"/>
+              </svg>
+              <span>App Store</span>
+            </div>
+            <div class="store-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.6 2.4c-.4.4-.6 1-.6 1.7v15.8c0 .7.2 1.3.6 1.7l.1.1 9-9v-.2l-9.1-10.1zm11.9 11.9l-2.8-2.8 2.8-2.8 3.2 1.8c.9.5.9 1.4 0 1.9l-3.2 1.9zm-3.8-3.8l-8.6 8.6c.3.1.7.1 1.1-.1l10.2-5.9-2.7-2.6zm0-1l2.7-2.6-10.2-5.9c-.4-.2-.8-.2-1.1-.1l8.6 8.6z"/>
+              </svg>
+              <span>Google Play</span>
+            </div>
+            <div class="store-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0 3.45L9.9 2.1v9.3H0V3.45zm0 8.85h9.9v9.3L0 20.2v-7.9zm10.9-10.3L24 0v11.4h-13.1V2zm0 10.3H24V24l-13.1-2v-8.9z"/>
+              </svg>
+              <span>Windows</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qr-code-box">
+          <!-- Procedural Sharp SVG QR Code pattern -->
+          <svg width="150" height="150" viewBox="0 0 100 100" fill="#181a20">
+            <!-- Corners -->
+            <rect x="5" y="5" width="26" height="26" fill="#181a20" rx="3"/>
+            <rect x="9" y="9" width="18" height="18" fill="#ffffff" rx="2"/>
+            <rect x="13" y="13" width="10" height="10" fill="#181a20" rx="1"/>
+
+            <rect x="69" y="5" width="26" height="26" fill="#181a20" rx="3"/>
+            <rect x="73" y="9" width="18" height="18" fill="#ffffff" rx="2"/>
+            <rect x="77" y="13" width="10" height="10" fill="#181a20" rx="1"/>
+
+            <rect x="5" y="69" width="26" height="26" fill="#181a20" rx="3"/>
+            <rect x="9" y="73" width="18" height="18" fill="#ffffff" rx="2"/>
+            <rect x="13" y="77" width="10" height="10" fill="#181a20" rx="1"/>
+
+            <!-- Center Pattern Dots -->
+            <rect x="36" y="8" width="8" height="8"/>
+            <rect x="50" y="8" width="6" height="6"/>
+            <rect x="38" y="24" width="6" height="6"/>
+            <rect x="52" y="22" width="8" height="8"/>
+            <rect x="10" y="38" width="8" height="8"/>
+            <rect x="24" y="44" width="6" height="6"/>
+            <rect x="36" y="38" width="28" height="28" fill="#FCD535" rx="4"/>
+            <rect x="42" y="44" width="16" height="16" fill="#181a20" rx="2"/>
+            <rect x="70" y="40" width="8" height="8"/>
+            <rect x="84" y="46" width="6" height="6"/>
+            <rect x="38" y="72" width="8" height="8"/>
+            <rect x="52" y="78" width="6" height="6"/>
+            <rect x="74" y="72" width="16" height="6"/>
+            <rect x="84" y="84" width="6" height="6"/>
+          </svg>
+          <span>Scan to Download App</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. FAQ ACCORDION SECTION
+       ========================================================================== -->
+  <section class="faq-section" id="faq-section">
+    <div class="container">
+      <div class="faq-wrapper">
+        <h2 style="font-size: 32px; font-weight: 700; color: var(--colors-on-dark); text-align: center; margin-bottom: 40px;">
+          Frequently Asked Questions
+        </h2>
+
+        <div class="faq-item active">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What is cryptocurrency and how do I trade it safely?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            Cryptocurrency is digital money verified using decentralized cryptographic networks. To trade safely on Binance, complete identity verification (KYC), activate Two-Factor Authentication (2FA), and store long-term assets protected by the 15,000 BTC SAFU guarantee.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>How does the Binance 1:1 Proof of Reserves work?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            Binance utilizes Merkle Tree cryptography to verify that every user's balance is backed 100% by physical crypto held in company custody. Anyone can verify their individual account balance against the cryptographic tree snapshot anytime.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What are Binance's spot and futures maker/taker trading fees?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            Standard spot trading fees start at 0.10% for maker and taker orders. Holding BNB provides an automatic 25% fee deduction, and VIP tiers scale down to 0% maker fees for active high-volume market participants.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>How can I deposit fiat currency to buy Bitcoin directly?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            You can link your debit card, credit card, or bank account directly in our transactional portal. Deposits via SEPA, ACH, and regional UPI/wire networks are credited within minutes.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. PRE-FOOTER CTA BAND
+       ========================================================================== -->
+  <section class="container">
+    <div class="cta-band">
+      <div class="cta-band-text">
+        <h2>Secure, Low-Fee Trading on Binance</h2>
+        <p>Register today and claim up to $100 in welcome trading fee credits.</p>
+      </div>
+      <a href="#hero-signup" class="btn-primary" style="height: 44px; padding: 0 32px; font-size: 15px;">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. SIGNATURE LIGHT FOOTER (#fafafa surface on dark page)
+       ========================================================================== -->
+  <footer class="footer-light">
+    <div class="container">
+      <div class="footer-columns-grid">
+        <div class="footer-col">
+          <h4>About Us</h4>
+          <ul class="footer-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Announcements</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Legal &amp; Privacy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul class="footer-links">
+            <li><a href="#">Exchange</a></li>
+            <li><a href="#">Buy Crypto</a></li>
+            <li><a href="#">Pay</a></li>
+            <li><a href="#">Academy</a></li>
+            <li><a href="#">Live</a></li>
+            <li><a href="#">Tax Tool</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Business</h4>
+          <ul class="footer-links">
+            <li><a href="#">P2P Merchant</a></li>
+            <li><a href="#">Listing Application</a></li>
+            <li><a href="#">Institutional Services</a></li>
+            <li><a href="#">Binance Labs</a></li>
+            <li><a href="#">Card Solutions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul class="footer-links">
+            <li><a href="#">Learn &amp; Earn</a></li>
+            <li><a href="#">Browse Crypto Prices</a></li>
+            <li><a href="#">Bitcoin Price Today</a></li>
+            <li><a href="#">Ethereum Price</a></li>
+            <li><a href="#">Buy BNB Guide</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Service</h4>
+          <ul class="footer-links">
+            <li><a href="#">24/7 Chat Support</a></li>
+            <li><a href="#">Submit a Request</a></li>
+            <li><a href="#">Fees Schedule</a></li>
+            <li><a href="#">Trading Rules</a></li>
+            <li><a href="#">Binance Verify</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul class="footer-links">
+            <li><a href="#">Telegram</a></li>
+            <li><a href="#">Discord</a></li>
+            <li><a href="#">X (Twitter)</a></li>
+            <li><a href="#">Reddit</a></li>
+            <li><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Binance.com. All rights reserved. SAFU insured.</div>
+        <div class="social-icons-row">
+          <span class="social-icon-link">Global / English</span>
+          <span class="social-icon-link">USD ($)</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       11. COOKIE CONSENT BANNER COMPONENT
+       ========================================================================== -->
+  <div class="cookie-consent-card" id="cookie-banner">
+    <div style="font-weight: 700; font-size: 14px;">Cookie Preferences</div>
+    <div class="cookie-text">
+      We use cookies and similar technologies to enhance your trading experience, deliver personalized content, and analyze platform telemetry.
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-btn-primary" onclick="dismissCookie()">Accept &amp; Continue</button>
+      <button class="cookie-btn-secondary" onclick="dismissCookie()">Reject</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    // Market Data Model
+    const marketData = [
+      { symbol: "BTC", name: "Bitcoin", price: 88432.10, change: 2.34, volume: "38,421M", color: "#F7931A", glyph: "₿" },
+      { symbol: "ETH", name: "Ethereum", price: 3428.80, change: 1.85, volume: "19,204M", color: "#627EEA", glyph: "Ξ" },
+      { symbol: "BNB", name: "BNB", price: 624.50, change: 3.12, volume: "2,410M", color: "#F3BA2F", glyph: "BNB" },
+      { symbol: "SOL", name: "Solana", price: 182.25, change: -0.74, volume: "4,120M", color: "#14F195", glyph: "S" },
+      { symbol: "XRP", name: "Ripple", price: 0.6210, change: -1.20, volume: "1,850M", color: "#23292F", glyph: "X" },
+      { symbol: "DOGE", name: "Dogecoin", price: 0.1420, change: 5.48, volume: "1,120M", color: "#C2A633", glyph: "Ð" }
+    ];
+
+    let currentTab = 'popular';
+
+    // Render Market Table
+    function renderMarketsTable() {
+      const tbody = document.getElementById('table-rows');
+      if (!tbody) return;
+
+      let list = [...marketData];
+      if (currentTab === 'gainers') {
+        list.sort((a, b) => b.change - a.change);
+      } else if (currentTab === 'volume') {
+        list.sort((a, b) => parseFloat(b.volume) - parseFloat(a.volume));
+      } else if (currentTab === 'new') {
+        list.reverse();
+      }
+
+      tbody.innerHTML = list.map(item => {
+        const isUp = item.change >= 0;
+        const changeClass = isUp ? 'price-up' : 'price-down';
+        const changeArrow = isUp ? '▲ +' : '▼ ';
+
+        return `
+          <tr>
+            <td>
+              <div class="coin-cell">
+                <div class="coin-badge" style="background-color: ${item.color};">${item.glyph}</div>
+                <div>
+                  <div class="coin-symbol">${item.symbol}<span style="font-size: 11px; color: var(--colors-muted); margin-left: 4px;">/USDT</span></div>
+                  <div class="coin-fullname">${item.name}</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="table-price num" id="price-cell-${item.symbol}">$${item.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: item.price < 1 ? 4 : 2 })}</span>
+            </td>
+            <td>
+              <span class="${changeClass} num">${changeArrow}${Math.abs(item.change)}%</span>
+            </td>
+            <td>
+              <span class="num" style="color: var(--colors-muted-strong);">$${item.volume}</span>
+            </td>
+            <td style="text-align: right;">
+              <a href="#buy-crypto-section" class="btn-trading-up" onclick="selectForTrade('${item.symbol}', ${item.price})">Trade</a>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function switchMarketTab(btn, tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTab = tab;
+      renderMarketsTable();
+    }
+
+    // Toggle Mobile Drawer
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('active');
+    }
+    document.getElementById('mobile-toggle').addEventListener('click', toggleMenu);
+
+    // FAQ Accordion
+    function toggleFaq(button) {
+      const item = button.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+
+    // Cookie Banner
+    function dismissCookie() {
+      document.getElementById('cookie-banner').classList.add('hidden');
+    }
+
+    // Interactive Buy Crypto Calculation
+    let activePrice = 88432.10;
+    function calculateCryptoReturn() {
+      const spendInput = document.getElementById('spend-amount');
+      const receiveInput = document.getElementById('receive-amount');
+      const amount = parseFloat(spendInput.value) || 0;
+      const btcAmount = (amount / activePrice).toFixed(6);
+      receiveInput.value = btcAmount;
+    }
+
+    function selectForTrade(symbol, price) {
+      activePrice = price;
+      document.getElementById('selected-coin-symbol').textContent = symbol;
+      document.getElementById('chart-live-price').textContent = `$${price.toLocaleString()}`;
+      calculateCryptoReturn();
+    }
+
+    function toggleOrderTab(type) {
+      document.querySelectorAll('.c-tab').forEach(t => t.classList.remove('active'));
+      const activeTab = document.getElementById(`tab-${type}`);
+      if (activeTab) activeTab.classList.add('active');
+    }
+
+    function executeOrder() {
+      const spend = document.getElementById('spend-amount').value;
+      const crypto = document.getElementById('receive-amount').value;
+      const coin = document.getElementById('selected-coin-symbol').textContent;
+      alert(`Order Confirmed! Transacted $${spend} USD for ${crypto} ${coin}. Credited to SAFU spot wallet.`);
+    }
+
+    // Interactive Canvas Candlestick & Smooth Trend Line Chart
+    function renderInteractiveChart() {
+      const canvas = document.getElementById('marketCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const width = rect.width;
+      const height = rect.height;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Light background grid hairlines
+      ctx.strokeStyle = '#eaecef';
+      ctx.lineWidth = 1;
+      for (let y = 30; y < height; y += 45) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Trend data points
+      const points = [
+        { x: 0, y: height * 0.75 },
+        { x: width * 0.15, y: height * 0.65 },
+        { x: width * 0.3, y: height * 0.7 },
+        { x: width * 0.45, y: height * 0.45 },
+        { x: width * 0.6, y: height * 0.52 },
+        { x: width * 0.75, y: height * 0.35 },
+        { x: width * 0.9, y: height * 0.28 },
+        { x: width, y: height * 0.2 }
+      ];
+
+      // Subtle gradient fill under curve
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+      gradient.addColorStop(0, 'rgba(14, 203, 129, 0.18)');
+      gradient.addColorStop(1, 'rgba(14, 203, 129, 0.0)');
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < points.length; i++) {
+        const xc = (points[i - 1].x + points[i].x) / 2;
+        const yc = (points[i - 1].y + points[i].y) / 2;
+        ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, xc, yc);
+      }
+      ctx.lineTo(width, height);
+      ctx.lineTo(0, height);
+      ctx.closePath();
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Sharp trend curve line in Trading Up Green (#0ecb81)
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < points.length; i++) {
+        const xc = (points[i - 1].x + points[i].x) / 2;
+        const yc = (points[i - 1].y + points[i].y) / 2;
+        ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, xc, yc);
+      }
+      ctx.strokeStyle = '#0ecb81';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Pulsing indicator dot on latest price
+      const lastPoint = points[points.length - 1];
+      ctx.beginPath();
+      ctx.arc(lastPoint.x - 4, lastPoint.y + 4, 5, 0, Math.PI * 2);
+      ctx.fillStyle = '#0ecb81';
+      ctx.fill();
+    }
+
+    function setTimeframe(btn, tf) {
+      document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderInteractiveChart();
+    }
+
+    // Simulated Real-Time Price Ticking Stream
+    function simulatePriceTicks() {
+      setInterval(() => {
+        const randomCoin = marketData[Math.floor(Math.random() * marketData.length)];
+        const delta = (Math.random() - 0.48) * (randomCoin.price * 0.003);
+        randomCoin.price = parseFloat((randomCoin.price + delta).toFixed(2));
+
+        // Update hero and ticker bar if BTC
+        if (randomCoin.symbol === 'BTC') {
+          const heroBtc = document.getElementById('hero-btc-price');
+          const barBtc = document.getElementById('bar-btc');
+          const chartPrice = document.getElementById('chart-live-price');
+          const formatted = `$${randomCoin.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+
+          if (heroBtc) heroBtc.textContent = formatted;
+          if (barBtc) barBtc.textContent = formatted;
+          if (chartPrice) chartPrice.textContent = formatted;
+          activePrice = randomCoin.price;
+          calculateCryptoReturn();
+        }
+
+        // Flash corresponding table cell
+        const priceCell = document.getElementById(`price-cell-${randomCoin.symbol}`);
+        if (priceCell) {
+          priceCell.textContent = `$${randomCoin.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: randomCoin.price < 1 ? 4 : 2 })}`;
+          priceCell.classList.remove('flash-up', 'flash-down');
+          void priceCell.offsetWidth; // Trigger reflow
+          priceCell.classList.add(delta >= 0 ? 'flash-up' : 'flash-down');
+        }
+      }, 2500);
+    }
+
+    // Init on Mount
+    window.addEventListener('DOMContentLoaded', () => {
+      renderMarketsTable();
+      renderInteractiveChart();
+      calculateCryptoReturn();
+      simulatePriceTicks();
+    });
+
+    window.addEventListener('resize', renderInteractiveChart);
+  </script>
+</body>
+</html>
